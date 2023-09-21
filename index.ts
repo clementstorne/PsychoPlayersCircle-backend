@@ -1,6 +1,8 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 import express from "express";
 import cors from "cors";
+import helmet from "helmet";
+import compression from "compression";
 
 import AuthRoutes from "./routes/AuthRoutes";
 import UsersRoutes from "./routes/UsersRoutes";
@@ -10,6 +12,8 @@ import verifyTokenMiddleware from "./middlewares/verifyToken";
 
 const prisma = new PrismaClient();
 const app = express();
+app.use(helmet());
+app.use(compression());
 const corsOptions = {
   origin: "http://localhost:5173",
 };
